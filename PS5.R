@@ -55,22 +55,24 @@ training <- ANESslected[sample(1:nrow(ANESslected), nrow(ANESslected)/2, replace
 testing <- ANESslected[!(row.names(ANESslected) %in% row.names(training)),]
 
 # Build the models
+# Because I got too many NAs in the four variables, "Internet", "TV", "Newspaper", "Radio",
+# I leave them out of the model to get more predictions later.
+
 # OLS
-model_OLS <- lm(Obama ~ Gender + Attention + Internet + TV + Newspaper + Radio
-                + Direction + Selfplacement + PartyIdentity, data = training)
+model_OLS <- lm(Obama ~ Gender + Attention + Direction + Selfplacement + PartyIdentity, 
+                data = training)
 summary(model_OLS)
 
 # Tobit
 library(AER)
-model_Tobit <- tobit(Obama ~ Gender + Attention + Internet + TV + Newspaper + Radio
-                     + Direction + Selfplacement + PartyIdentity, data = training, 
+model_Tobit <- tobit(Obama ~ Gender + Attention + Direction + Selfplacement + PartyIdentity, 
+                     data = training, 
                      left = 0, right = 100)
 summary(model_Tobit)
 
 # Random Forest
 library(randomForest)
-model_RF <- randomForest(Obama ~ Gender + Attention + Internet + TV + Newspaper + Radio
-                         + Direction + Selfplacement + PartyIdentity, 
+model_RF <- randomForest(Obama ~ Gender + Attention + Direction + Selfplacement + PartyIdentity, 
                          data = na.omit(training), trees = 1000)
 summary(model_RF)
 
@@ -82,3 +84,5 @@ PredRF <- predict(model_RF, newdata = testing, type="response")
 
 # Save the predicted values into a matrix.
 Allpredictions <- as.matrix(cbind(PredOLS, PredTobit, PredRF))
+
+head(Allpredictions, 100)
