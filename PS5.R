@@ -86,3 +86,4 @@ PredRF <- predict(model_RF, newdata = testing, type="response")
 Allpredictions <- as.matrix(cbind(PredOLS, PredTobit, PredRF))
 
 head(Allpredictions, 100)
+
