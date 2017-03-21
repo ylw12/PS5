@@ -4,6 +4,8 @@ library(roxygen2)
 # Create the basic structure of the package.
 create("ModelfitnessPack")
 
+setwd("/Users/luweiying/Desktop/ASP/PS5/PS5_Luwei")
+
 # Now, go to the FitnessEvaluation.R under the R folder to write the functions, including
 # the codes for documentations at the very beginning.
 

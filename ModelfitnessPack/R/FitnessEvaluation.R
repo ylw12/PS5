@@ -15,7 +15,7 @@
 #' x <- seq(1, 100, by=1)
 #' y <- seq(1, 100, by=1) +  rnorm(100, 0, 1)
 #' p <- matrix(predict(lm(y ~ x)), ncol=1)
-#' r <- rep(median(y), 100)
+#' r <- rep(50.5, 100)
 #' FitStats(y=y, p=p, r=r, fits=c("rmse", "mad", "mrae"))
 #' @rdname FitnessEvaluation
 #' @export
@@ -76,6 +76,9 @@ FitStats <- function(y, p, r = NULL,
       if (min(p_complete[i, ]) < 0 | y_complete[i, ] < 0){
         y_comp <- as.matrix(y_complete[-i, ])
         p_comp <- p_complete[-i, ]
+      } else {
+        y_comp <- as.matrix(y_complete)
+        p_comp <- p_complete
       }
     }
     RMSLE <- apply(p_comp, 2, function(p_comp) sqrt(sum((log(p_comp+1)-log(y_comp+1))^2)/n))

@@ -29,7 +29,7 @@ Users can choose which statistics to calculate.
 x <- seq(1, 100, by=1)
 y <- seq(1, 100, by=1) +  rnorm(100, 0, 1)
 p <- matrix(predict(lm(y ~ x)), ncol=1)
-r <- rep(median(y), 100)
+r <- rep(50.5, 100)
 FitStats(y=y, p=p, r=r, fits=c("rmse", "mad", "mrae"))
 }
 \author{
