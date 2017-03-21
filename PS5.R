@@ -87,3 +87,9 @@ Allpredictions <- as.matrix(cbind(PredOLS, PredTobit, PredRF))
 
 head(Allpredictions, 100)
 
+# Test (We can later go back here and test the functions with these data)
+r <- rep(median(y), nrow(y))
+p <- Allpredictions
+y <- as.matrix(testing[ ,1])
+FitStats(y=y, p=p, r=r, fits=c("rmse", "mad", "mrae"))
+FitStats(y=y, p=p, fits=c("rmse", "mad", "mrae")) #This would throw an error.

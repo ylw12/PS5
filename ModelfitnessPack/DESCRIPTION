@@ -1,9 +1,12 @@
 Package: ModelfitnessPack
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Calculate the fit statistics of models
+Version: 0.0.1
+Authors@R: person("Luwei", "YING", email = "luwei.ying@wustl.edu",
+       role = c("aut", "cre"))
+Description: Calculate the fit statistics of models, given the
+       predicted values and observaed values.
 Depends: R (>= 3.3.0)
-License: What license is it under?
+License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 5.0.1

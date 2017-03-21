@@ -1,11 +1,11 @@
 #' Evaluate the fitness of different models
 #'
-#' Calculate the it statistics of models, given the predicted values and observaed values.
+#' Calculate the fit statistics of models, given the predicted values and observaed values.
 #'
-#' @param x A vector of observed values
-#' @param y a matrix of predicted values
+#' @param y A vector of observed values
+#' @param p a matrix of predicted values
 #' @param r a vector of naive values
-#' @param z a vector of fit statistics, including RMSE, MAD, RMSLE, MAPE, and MEAPE
+#' @param fits a vector of fit statistics, including RMSE, MAD, RMSLE, MAPE, and MEAPE
 #'
 #' @return A matrix where each column corresponds with one of the 
 #' fit statistics, and each row corresponds to a model.
@@ -14,9 +14,9 @@
 #' @examples
 #' x <- seq(1, 100, by=1)
 #' y <- seq(1, 100, by=1) +  rnorm(100, 0, 1)
-#' r <- rep(median(y), 100)
 #' p <- matrix(predict(lm(y ~ x)), ncol=1)
-#' FitStats(y, p, r)
+#' r <- rep(median(y), 100)
+#' FitStats(y=y, p=p, r=r, fits=c("rmse", "mad", "mrae"))
 #' @rdname FitnessEvaluation
 #' @export
 FitStats <- function(y, p, r = NULL, 
@@ -112,11 +112,3 @@ FitStats <- function(y, p, r = NULL,
   }
   print(Output)
 }
-    
-# Test -----------------
-r <- rep(median(y), nrow(y))
-p <- Allpredictions
-y <- as.matrix(testing[ ,1])
-FitStats(y=y, p=p, r=r, fits=c("rmse", "mad", "mrae"))
-FitStats(y=y, p=p, fits=c("rmse", "mad", "mrae")) #This would trow an error.
-    
